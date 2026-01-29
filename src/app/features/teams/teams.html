@@ -1,0 +1,8 @@
+<div>
+    @for(team of teams(); track team.id) {
+    <app-taem-card [taem]="team"></app-taem-card>
+    <app-add-member (addMemmber)="addMemmber($event, team.id)"></app-add-member>
+    }
+</div>
+
+<app-add-team (addTask)="addTeam($event)"></app-add-team>

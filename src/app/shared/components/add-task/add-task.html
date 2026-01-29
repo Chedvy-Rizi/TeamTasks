@@ -1,0 +1,28 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="title">Task Title:</label>
+        <input id="title" formControlName="title" />
+        @if(taskForm.get('title')?.invalid && taskForm.get('title')?.touched) {
+        <span class="error">Title is required</span>
+        }
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" formControlName="description"></textarea>
+    </div>
+
+    <div>
+        <select formControlName="projectId">
+            <option value="" disabled selected>Select Project</option>
+            @for(project of projects(); track project.id) {
+            <option [value]="project.id">
+                {{ project.name }}
+            </option>
+            }
+        </select>
+    </div>
+
+    <button type="submit">Add Task</button>
+</form>

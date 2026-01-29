@@ -1,0 +1,17 @@
+<div class="task-card">
+    <h3>{{ task().title }}</h3>
+    <p>{{ task().description }}</p>
+    <select #prioritySelect (change)="onUpdateTask(task().id, {priority: prioritySelect.value})">
+        @for(option of priorities; track option) {
+        <option [value]="option" [selected]="option === task().priority">{{ option }}</option>
+        }
+    </select>
+    <select #statusSelect (change)="onUpdateTask(task().id, {status: statusSelect.value})">
+        @for(option of statuses; track option) {
+        <option [value]="option" [selected]="option === task().status">{{ option }}</option>
+        }    
+    </select>
+    <p>Priority: {{ task().priority }}</p>
+    <p>Assigned to: {{ task().created_at }}</p>
+    <button (click)="onDeleteTask()">Delete</button>
+</div>

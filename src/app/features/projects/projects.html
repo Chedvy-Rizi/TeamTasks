@@ -1,0 +1,12 @@
+
+@for(project of projects(); track  project.id) {
+  <app-project-card [project]="project"></app-project-card>
+  <button (click)="onClickSeeTasks(project.id)">See all tasks</button>
+}
+
+@if(this.isAddingProject) {
+<app-add-project (projectAdded)="closeAddProject()"></app-add-project>
+}
+@else {
+<button (click)="addProject()">Add Project</button>
+}

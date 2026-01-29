@@ -1,0 +1,10 @@
+<div class="comments-container">
+    @for(comment of comments(); track comment.id) {
+        <p>{{comment.body}}</p>
+        <span>{{comment.created_at}}</span>
+        <span>{{comment.author_name}}</span>
+    }
+    <input type="text" [(ngModel)]="newCommentBody" placeholder="Add a comment..." />
+    <button (click)="addComment()">Add Comment</button>
+    <button (click)="onCloseComments()">Close Comments</button>
+</div>
