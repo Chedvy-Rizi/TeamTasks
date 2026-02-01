@@ -4,3 +4,8 @@ export interface TeamResponse {
   created_at: string;
   members_count: number;
 }
+
+export interface UserResponse {
+  id: number,
+  name: string
+}

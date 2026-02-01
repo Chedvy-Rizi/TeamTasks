@@ -1,100 +1,180 @@
-.modern-form {
+.auth-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fc;
+  font-family: 'Inter', sans-serif;
+}
+
+.split-container {
+  display: flex;
+  width: 95%;
+  max-width: 1100px;
+  align-items: center;
+}
+
+.form-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-card {
+  width: 100%;
   max-width: 400px;
-  margin: 3rem auto;
-  padding: 3rem 2.5rem;
-  background: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-  font-family: 'Inter', system-ui, sans-serif;
-  border: 1px solid #f0f0f5;
 }
 
-.modern-form h2 {
-  margin-bottom: 2.5rem;
-  font-size: 1.8rem;
+.card-title {
+  font-size: 2rem;
   font-weight: 800;
-  text-align: center;
-  color: #1a1a1a;
-  letter-spacing: -0.5px;
+  color: #0a1128;
+  margin-bottom: 8px;
 }
 
-/* קונטיינר יחסי עבור הציפה */
+.card-subtitle {
+  color: #6c757d;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
 .form-group {
   position: relative;
-  margin-bottom: 1.5rem;
+  margin-bottom: 28px;
 }
 
-/* עיצוב השדה */
 .form-group input {
   width: 100%;
-  padding: 1.2rem 1rem 0.6rem; /* רווח עליון גדול יותר בשביל התווית שתעלה */
+  padding: 1.1rem;
   font-size: 1rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 12px;
-  background: #fff;
+  border: 1.5px solid #ced4da;
+  border-radius: 10px;
+  background: white;
   outline: none;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
+  transition: all 0.2s;
 }
 
-/* עיצוב התווית במצב התחלתי (בתוך השדה) */
 .form-group label {
   position: absolute;
-  left: 1rem;
-  top: 1rem;
-  color: #94a3b8;
-  font-size: 1rem;
-  font-weight: 400;
-  pointer-events: none; /* מאפשר ללחוץ "דרך" התווית */
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 6px;
+  color: #adb5bd;
   transition: all 0.2s ease;
-  background: transparent;
-  padding: 0 4px;
+  pointer-events: none;
 }
 
-/* אפקט הציפה: כשלוחצים או כשיש טקסט */
 .form-group input:focus + label,
 .form-group input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 0.8rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: #6366f1;
-  background: #ffffff; /* הרקע הלבן מסתיר את קו המסגרת של השדה */
+  top: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #00d2ff; 
+  background: white !important;
+  transform: translateY(-50%);
 }
 
-/* שינוי צבע המסגרת בפוקוס */
 .form-group input:focus {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.08);
+  border-color: #00d2ff;
+  border-width: 2px;
 }
 
-/* כפתור מעוצב */
-button[type="submit"] {
-  width: 100%;
-  padding: 1rem;
-  margin-top: 1rem;
-  background: #1a1a1a; /* שחור עמוק למראה יוקרתי */
-  color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+.input-error { border-color: #ff3333 !important; }
 
-button[type="submit"]:hover {
-  background: #333;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* הודעות שגיאה עדינות */
-.error {
-  display: block;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
+.error-text {
+  position: absolute;
+  bottom: -18px;
+  left: 5px;
+  color: #ff3333;
   font-size: 0.75rem;
-  color: #dc2626;
-  font-weight: 500;
+  font-weight: 700;
+}
+
+.vertical-divider {
+  width: 1.5px;
+  height: 350px;
+  background-color: #dee2e6;
+  margin: 0 60px;
+}
+
+.info-side {
+  flex: 1.4;
+}
+
+.sidebar-logo {
+  height: 45px;
+  margin-bottom: 20px;
+}
+
+.brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #6c757d;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #00d2ff;
+  border-radius: 50%;
+}
+
+.main-heading {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 900;
+  margin-bottom: 20px;
+  color: #0a1128;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #00f2fe 0%, #ee0979 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sub-text {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #6c757d;
+  margin-bottom: 25px;
+  max-width: 480px;
+}
+
+.color-line {
+  width: 60px;
+  height: 5px;
+  background: #00d2ff;
+  margin-bottom: 35px;
+  border-radius: 10px;
+}
+
+.switch-section {
+  font-size: 1rem;
+  color: #4a5568;
+}
+
+.register-link {
+  color: #ee0979;
+  text-decoration: none;
+  font-weight: 700;
+  margin-left: 8px;
+  transition: opacity 0.2s;
+}
+
+.register-link:hover { opacity: 0.8; }
+
+@media (max-width: 900px) {
+  .split-container { flex-direction: column-reverse; padding: 40px 0; }
+  .vertical-divider { display: none; }
+  .info-side { margin-bottom: 50px; text-align: center; }
+  .brand-tag { justify-content: center; }
+  .color-line { margin: 0 auto 35px auto; }
+  .sub-text { margin: 0 auto 25px auto; }
 }

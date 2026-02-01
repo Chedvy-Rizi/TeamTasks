@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { CommentResponse } from '../../shared/models/comment-model';
 import { tap } from 'rxjs';
+import { NotificationService } from './notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,8 @@ import { tap } from 'rxjs';
 export class CommentsService {
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:3000/api/comments';
+
+  private notification = inject(NotificationService);
 
   private _comments = signal<CommentResponse[]>([]);
   comments$ = this._comments.asReadonly();
@@ -20,7 +23,7 @@ export class CommentsService {
           this._comments.set(comments);
         },
         error: (err) => {
-          //create a component to show error messages
+           this.notification.showError(err.error?.error)
         }
       })
     );
@@ -30,10 +33,10 @@ export class CommentsService {
     return this.http.post<CommentResponse>(`${this.baseUrl}`, comment).pipe(
       tap({
         next: (newComment) => {
-          this._comments.update(comments => [...comments, newComment]);
+          this.getComments(comment.taskId).subscribe();
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );

@@ -1,0 +1,57 @@
+<svg width="240" height="60" viewBox="0 0 240 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C2FF" />
+      <stop offset="50%" stop-color="#2EE59D" />
+      <stop offset="100%" stop-color="#FF5DA2" />
+    </linearGradient>
+  </defs>
+
+  <rect x="5" y="8" width="44" height="44" rx="12" fill="url(#iconGradient)" />
+
+  <path
+    d="M15 35L20 30L26 34L35 22"
+    stroke="white"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <circle cx="15" cy="35" r="2" fill="white" />
+  <circle cx="20" cy="30" r="2" fill="white" />
+  <circle cx="26" cy="34" r="2" fill="white" />
+  <path
+    d="M35 22L35 28M35 22L29 22"
+    stroke="white"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <text
+    x="60"
+    y="42"
+    font-family="Inter, Arial, sans-serif"
+    font-size="32"
+    font-weight="800"
+    fill="#0F172A"
+    letter-spacing="-1"
+  >
+    Task
+  </text>
+
+  <g transform="translate(132, 42)">
+    <text
+      x="0"
+      y="0"
+      font-family="Inter, Arial, sans-serif"
+      font-size="32"
+      font-weight="800"
+      fill="#00C2FF"
+      letter-spacing="-1"
+    >
+      Flow
+    </text>
+
+    <circle cx="88" cy="-22" r="6" fill="url(#iconGradient)" />
+  </g>
+</svg>

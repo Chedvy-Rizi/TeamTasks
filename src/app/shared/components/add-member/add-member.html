@@ -1,4 +1,38 @@
-<div>
-    <input type="number" [(ngModel)]="userId" placeholder="Enter user ID">
-    <button (click)="onAddMember()">Add Member</button>
+<div class="modal-card">
+  <header>
+    <h2>Add New Member</h2>
+    <p>Select a user to invite them to your team</p>
+  </header>
+
+  <div class="tech-form">
+    <div class="input-container">
+      <label for="userSelect" class="field-label">Choose Member</label>
+
+      <select id="userSelect" [(ngModel)]="userId" class="custom-select">
+        <option [ngValue]="undefined" disabled selected>Select a user...</option>
+
+        @for (user of users(); track user.id) {
+        <option [ngValue]="user.id">
+          {{ user.name }}
+        </option>
+        }
+      </select>
+
+      @if (showError && !userId) {
+      <span class="error-message">Please select a user to add</span>
+      }
+    </div>
+
+    <div class="footer-actions">
+      <button type="button" class="btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+
+      <div class="btn-frame-bold">
+        <button type="button" class="taskflow-btn" (click)="onAddMember()">
+          Add Member
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

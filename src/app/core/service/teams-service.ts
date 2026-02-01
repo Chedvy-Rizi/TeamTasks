@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { TeamResponse } from '../../shared/models/teams-model';
 import { tap } from 'rxjs';
+import { NotificationService } from './notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ export class TeamsService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/api/teams';
 
+  private notification = inject(NotificationService);
   private _teams = signal<TeamResponse[]>([]);
   teams$ = this._teams.asReadonly();
 
@@ -20,7 +22,7 @@ export class TeamsService {
           this._teams.set(teams);
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );
@@ -33,7 +35,7 @@ export class TeamsService {
           this._teams.update(teams => [...teams, { ...team, members_count: 1 }]);
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );
@@ -46,9 +48,10 @@ export class TeamsService {
           this._teams.update(teams => teams.map(team => team.id === teamId ? { ...team, members_count: team.members_count + 1 } : team));
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );
   }
+
 }

@@ -1,5 +1,7 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { UsersService } from '../../../core/service/users-service';
 
 @Component({
   selector: 'app-add-member',
@@ -8,10 +10,28 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-member.css',
 })
 export class AddMember {
-  addMemmber = output<number>();
+  private dialogRef = inject(MatDialogRef<AddMember>);
+  private usersService = inject(UsersService);
+
+  data = inject(MAT_DIALOG_DATA);
+
   userId!: number;
+  showError = false;
+  users = this.usersService.users$;
+
+  ngOnInit() {
+    this.usersService.getUsers().subscribe();
+  }
 
   onAddMember() {
-    this.addMemmber.emit(this.userId);
+    if (this.userId) {
+      this.dialogRef.close(Number(this.userId));
+    } else {
+      this.showError = true;
+    }
+  }
+
+  onCancel() {
+    this.dialogRef.close();
   }
 }

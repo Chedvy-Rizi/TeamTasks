@@ -1,13 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { AddProject } from '../../shared/components/add-project/add-project';
+import { Component, inject, signal } from '@angular/core';
 import { ProjectsService } from '../../core/service/projects-service';
 import { ProjectCard } from '../../shared/components/project-card/project-card';
 import { TasksService } from '../../core/service/tasks-service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProject } from '../../shared/components/add-project/add-project';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-projects',
-  imports: [AddProject,ProjectCard],
+  imports: [ProjectCard, MatIcon],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })
@@ -15,22 +17,23 @@ export class Projects {
   private projectService = inject(ProjectsService);
   private tasksService = inject(TasksService);
   private router = inject(Router);
+  private dialog = inject(MatDialog);
   projects = this.projectService.projects$;
-  isAddingProject = false;
 
   ngOnInit() {
     this.projectService.getProjects().subscribe();
   }
 
-  addProject() {
-    this.isAddingProject = true;
-  }
-  closeAddProject() {
-    this.isAddingProject = false;
+  
+
+  onClickSeeTasks(id: number) {
+    this.router.navigate(['/tasks', id]);
   }
 
-  onClickSeeTasks(id:number) {
-   this.tasksService.getTaskByProjectId(id).subscribe();
-    this.router.navigate(['/tasks']);
+  openAddProject() {
+    const dialogRef = this.dialog.open(AddProject, {
+      width: '450px',
+      panelClass: 'tech-dialog-container' 
+    });
   }
 }

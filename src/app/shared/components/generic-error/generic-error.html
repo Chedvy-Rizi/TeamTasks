@@ -1,0 +1,14 @@
+<div class="error-toast-wrapper">
+  <div class="icon-section">
+    <mat-icon>report_problem</mat-icon>
+  </div>
+  
+  <div class="message-section">
+    <span class="error-label">Error</span>
+    <p class="error-msg">{{ data.message }}</p>
+  </div>
+
+  <button class="close-btn" (click)="snackBarRef.dismiss()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

@@ -1,28 +1,45 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
 
-    <div>
-        <label for="title">Task Title:</label>
-        <input id="title" formControlName="title" />
-        @if(taskForm.get('title')?.invalid && taskForm.get('title')?.touched) {
-        <span class="error">Title is required</span>
+<div class="modal-content-wrapper">
+  <header>
+    <h2>Add New Task</h2>
+    <p>Fill in the details to create a new task</p>
+  </header>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="tech-form">
+    
+    <div class="input-container">
+      <input id="title" formControlName="title" placeholder=" " autocomplete="off" />
+      <label for="title">Task Title</label>
+      
+      @if(taskForm.get('title')?.invalid && (taskForm.get('title')?.touched || taskForm.get('title')?.dirty)) {
+        <span class="error-text">Title is required</span>
+      }
+    </div>
+
+    <div class="input-container">
+      <textarea id="description" formControlName="description" placeholder=" "></textarea>
+      <label for="description">Description (Optional)</label>
+    </div>
+
+    <div class="input-container">
+      <select formControlName="projectId" [class.has-value]="taskForm.get('projectId')?.value">
+        <option value="" disabled selected></option>
+        @for(project of projects(); track project.id) {
+          <option [value]="project.id">{{ project.name }}</option>
         }
+      </select>
+      <label for="projectId">Select Project</label>
+      
+      @if(taskForm.get('projectId')?.invalid && (taskForm.get('projectId')?.touched || taskForm.get('projectId')?.dirty)) {
+        <span class="error-text">Please select a project</span>
+      }
     </div>
 
-    <div>
-        <label for="description">Description:</label>
-        <textarea id="description" formControlName="description"></textarea>
+    <div class="footer-actions">
+      <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="btn-submit">
+        Add Task
+      </button>
     </div>
-
-    <div>
-        <select formControlName="projectId">
-            <option value="" disabled selected>Select Project</option>
-            @for(project of projects(); track project.id) {
-            <option [value]="project.id">
-                {{ project.name }}
-            </option>
-            }
-        </select>
-    </div>
-
-    <button type="submit">Add Task</button>
-</form>
+  </form>
+</div>

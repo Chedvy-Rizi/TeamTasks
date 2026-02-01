@@ -1,31 +1,79 @@
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="modern-form">
-    <h2>{{ mode() === 'register' ? 'Create Account' : 'Welcome Back' }}</h2>
+<div class="auth-page-wrapper">
+  <div class="split-container">
 
-    @if(mode() === 'register') {
-    <div class="form-group">
-        <input id="name" formControlName="name" type="text" placeholder=" " />
-        <label for="name">Full Name</label>
-        @if(userForm.get('name')?.invalid && userForm.get('name')?.touched) {
-            <span class="error">Name is required</span>
-        }
+    <div class="form-side">
+      <div class="auth-card">
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="modern-form">
+          <h2 class="card-title">{{ mode() === 'register' ? 'Sign Up' : 'Sign In' }}</h2>
+          <p class="card-subtitle">Please enter your credentials to proceed.</p>
+
+          @if(mode() === 'register') {
+          <div class="form-group">
+            <input id="name" formControlName="name" type="text" placeholder=" "
+              [class.input-error]="userForm.get('name')?.invalid && userForm.get('name')?.touched" />
+            <label for="name">Full Name</label>
+            @if(userForm.get('name')?.invalid && userForm.get('name')?.touched) {
+            <span class="error-text">Valid name is required</span>
+            }
+          </div>
+          }
+
+          <div class="form-group">
+            <input id="email" formControlName="email" type="email" placeholder=" "
+              [class.input-error]="userForm.get('email')?.invalid && userForm.get('email')?.touched" />
+            <label for="email">Email Address</label>
+            @if(userForm.get('email')?.invalid && userForm.get('email')?.touched) {
+            <span class="error-text">Please enter a valid email address</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <input id="password" formControlName="password" type="password" placeholder=" "
+              [class.input-error]="userForm.get('password')?.invalid && userForm.get('password')?.touched" />
+            <label for="password">Password</label>
+            @if(userForm.get('password')?.invalid && userForm.get('password')?.touched) {
+            <span class="error-text">Password must be at least 4 characters</span>
+            }
+          </div>
+          <div class="auth-button-container">
+            <div class="btn-frame-bold">
+              <button class="taskflow-btn" type="submit">
+                {{ mode() === 'register' ? 'Create Account' : 'Access Portal' }}
+                <span class="btn-arrow">›</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    }
 
-    <div class="form-group">
-        <input id="email" formControlName="email" type="email" placeholder=" " />
-        <label for="email">Email Address</label>
-        @if(userForm.get('email')?.invalid && userForm.get('email')?.touched) {
-            <span class="error">Invalid email address</span>
-        }
+    <div class="vertical-divider"></div>
+
+    <div class="info-side">
+      <div class="info-content">
+        <div class="sidebar-logo-container">
+          <img src="logo.svg" alt="TaskFlow" class="sidebar-logo">
+        </div>
+
+        <div class="brand-tag">
+          <span class="dot"></span> TASKFLOW MANAGEMENT
+        </div>
+
+        <h1 class="main-heading">
+          Welcome {{ mode() === 'register' ? 'to the' : 'back to the' }} <br>
+          <span class="gradient-text">TaskFlow Portal.</span>
+        </h1>
+        <p class="sub-text">Access your personalized dashboard and manage your projects with ease.</p>
+        <div class="color-line"></div>
+
+        <div class="switch-section">
+          <span>{{ mode() === 'register' ? 'Already a member?' : 'Not a member yet?' }}</span>
+          <a [routerLink]="mode() === 'register' ? '/login' : '/register'" class="register-link">
+            {{ mode() === 'register' ? 'Login now' : 'Register now' }} →
+          </a>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-        <input id="password" formControlName="password" type="password" placeholder=" " />
-        <label for="password">Password</label>
-        @if(userForm.get('password')?.invalid && userForm.get('password')?.touched) {
-            <span class="error">Password is required</span>
-        }
-    </div>
-
-    <button type="submit">{{ mode() === 'register' ? 'Sign Up' : 'Sign In' }}</button>
-</form>
+  </div>
+</div>

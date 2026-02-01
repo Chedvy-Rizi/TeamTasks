@@ -1,0 +1,100 @@
+.modal-card {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 16px;
+  max-width: 400px;
+}
+
+header h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  color: #0f172a;
+}
+
+header p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.tech-form {
+  margin-top: 24px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.custom-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  appearance: none; 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.custom-select:focus {
+  border-color: #00d2ff;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.1);
+}
+
+.footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.btn-secondary {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-secondary:hover {
+  color: #0f172a;
+}
+
+.btn-frame-bold {
+  width: auto; 
+  min-width: 140px;
+}
+
+.taskflow-btn {
+  padding: 0 24px !important;
+  height: 44px !important;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 4px;
+}

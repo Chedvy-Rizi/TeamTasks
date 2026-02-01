@@ -2,10 +2,12 @@ import { Component, inject, Input, Output, EventEmitter, input, output } from '@
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LoginRequest, RegisterRequest } from '../../models/auth-model';
 import { Register } from '../../../features/register/register';
+import { MatIcon } from "@angular/material/icon";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './auth-form.html',
   styleUrl: './auth-form.css',
 })

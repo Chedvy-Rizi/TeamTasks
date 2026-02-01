@@ -1,0 +1,26 @@
+<header class="main-header">
+  <div class="header-left">
+    <img src="logo.svg" alt="TaskFlow" class="header-logo">
+  </div>
+
+  <div class="header-right">
+    @if (user()) {
+      <div class="user-section">
+        <div class="user-info">
+          <span class="name">{{ user()?.name }}</span>
+          <span class="status">Online</span>
+        </div>
+        <div class="header-avatar">
+          {{ user()?.name?.substring(0,2)?.toUpperCase() }}
+        </div>
+      </div>
+
+      <div class="vertical-divider"></div>
+
+      <button class="logout-btn" (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+        <span>Sign Out</span>
+      </button>
+    }
+  </div>
+</header>

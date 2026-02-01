@@ -1,0 +1,124 @@
+.landing-page {
+  background-color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  padding: 30px 10%;
+  background: #ffffff;
+}
+
+.logo { height: 42px; }
+.spacer { flex: 1; }
+
+.nav-links a {
+  margin-left: 35px;
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+}
+
+.hero-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10% 100px 10%;
+}
+
+.hero-content {
+  display: flex;
+  width: 100%;
+  max-width: 1250px;
+  align-items: center;
+}
+
+.hero-text {
+  flex: 1.5;
+  text-align: left;
+}
+
+.hero-spacer { flex: 1; }
+
+.title {
+  font-size: 4.8rem;
+  font-weight: 800;
+  color: #0F172A;
+  line-height: 1.05;
+  margin-bottom: 25px;
+  letter-spacing: -0.02em;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #00C2FF, #2EE59D, #FF5DA2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.description {
+  color: #475569;
+  font-size: 1.4rem;
+  line-height: 1.5;
+  max-width: 650px;
+  margin-bottom: 15px;
+}
+
+.sub-description {
+  color: #94a3b8;
+  font-size: 1.15rem;
+  max-width: 600px;
+  margin-bottom: 50px;
+}
+
+.btn-frame-bold {
+  display: inline-flex; 
+  padding: 2px; 
+  border-radius: 12px;
+  background: transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.btn-frame-bold:hover {
+  background: linear-gradient(90deg, #00C2FF, #2EE59D, #FF5DA2);
+  box-shadow: 0 5x 20px rgba(0, 0, 0, 0.05);
+}
+
+.start-btn {
+  background-color: #0F172A !important;
+  color: #ffffff !important;
+  
+  height: 60px !important; 
+  line-height: 60px !important; 
+  padding: 0 45px !important; 
+  
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  border: none !important;
+  width: 100%;
+}
+
+.hero-visual {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.brand-glow-soft {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.05) 0%, rgba(255, 93, 162, 0.02) 50%, transparent 70%);
+  filter: blur(60px);
+}

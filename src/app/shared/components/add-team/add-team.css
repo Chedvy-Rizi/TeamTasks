@@ -1,0 +1,115 @@
+:host {
+  display: block;
+  --primary-gradient: linear-gradient(90deg, #2ae0b8, #3291ff, #9d60d1);
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #1a1f2e;
+  --text-dim: #64748b;
+}
+
+.modal-card {
+  background: var(--bg-card);
+  padding: 24px; 
+}
+
+header h2 { 
+  margin: 0 0 40px 0; 
+  color: var(--text-main); 
+  font-size: 1.6rem; 
+  font-weight: 800; 
+}
+
+.input-container { 
+  position: relative; 
+  margin: 20px 0 35px 0;
+  width: 100%; 
+}
+
+.input-container input {
+  width: 100%; 
+  height: 56px; 
+  padding: 0 16px;
+  background: transparent; 
+  border: 1.5px solid var(--border-color);
+  border-radius: 12px; 
+  color: var(--text-main); 
+  font-size: 1rem;
+  outline: none; 
+  transition: all 0.2s ease; 
+  box-sizing: border-box;
+}
+
+.input-container label {
+  position: absolute; 
+  left: 14px; 
+  top: 18px; 
+  color: var(--text-dim);
+  transition: all 0.2s ease; 
+  background: white; 
+  padding: 0 6px; 
+  pointer-events: none;
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+  top: -10px; 
+  left: 10px; 
+  font-size: 0.85rem; 
+  color: #3291ff; 
+  font-weight: 700;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: absolute;
+  bottom: -22px; 
+  left: 4px;
+}
+
+.footer-actions { 
+  display: flex; 
+  align-items: center; 
+  gap: 24px; 
+  margin-top: 40px; 
+  padding-bottom: 10px;
+}
+
+.btn-secondary { 
+  background: none; 
+  border: none; 
+  color: var(--text-dim); 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: color 0.2s;
+}
+
+.btn-submit {
+  position: relative;
+  background: #000000 !important;
+  color: white !important;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.btn-submit::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--primary-gradient);
+  border-radius: 12px;
+  z-index: -1;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.btn-submit:hover::before {
+  opacity: 1;
+  top: -3px; left: -3px; right: -3px; bottom: -3px;
+  border-radius: 15px;
+}

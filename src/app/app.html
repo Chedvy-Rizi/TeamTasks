@@ -1,1 +1,17 @@
-<router-outlet></router-outlet>
+<app-loader></app-loader>
+
+<div class="app-container">
+  @if (user()) {
+    <app-header></app-header>
+    
+    <div class="app-body">
+      <app-sidebar></app-sidebar>
+      
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  } @else {
+    <router-outlet></router-outlet>
+  }
+</div>

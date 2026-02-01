@@ -1,17 +1,39 @@
-<div class="task-card">
-    <h3>{{ task().title }}</h3>
-    <p>{{ task().description }}</p>
-    <select #prioritySelect (change)="onUpdateTask(task().id, {priority: prioritySelect.value})">
+
+
+<div class="task-card" [ngClass]="viewMode()" [attr.data-status]="task().status">
+  <div class="card-inner">
+    <div class="content-wrapper">
+
+      <div class="task-title" [title]="task().title">{{ task().title }}</div>
+
+      <select class="status-select" #statusSelect (change)="updateField({status: statusSelect.value})"
+        [style.backgroundColor]="getStatusColor(task().status)" [attr.data-status]="task().status">
+        @for(option of statuses; track option) {
+        <option [value]="option" [selected]="option === task().status">{{ option.replace('_', ' ') }}</option>
+        }
+      </select>
+
+      <select class="priority-select" #prioritySelect (change)="updateField({priority: prioritySelect.value})"
+        [attr.data-priority]="task().priority">
         @for(option of priorities; track option) {
         <option [value]="option" [selected]="option === task().priority">{{ option }}</option>
         }
-    </select>
-    <select #statusSelect (change)="onUpdateTask(task().id, {status: statusSelect.value})">
-        @for(option of statuses; track option) {
-        <option [value]="option" [selected]="option === task().status">{{ option }}</option>
-        }    
-    </select>
-    <p>Priority: {{ task().priority }}</p>
-    <p>Assigned to: {{ task().created_at }}</p>
-    <button (click)="onDeleteTask()">Delete</button>
+      </select>
+
+
+
+      <div class="actions">
+        <button class="icon-btn" (click)="openComments()">
+          <mat-icon>chat_bubble_outline</mat-icon>
+        </button>
+
+        <button class="icon-btn delete" (click)="onDelete()">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
 </div>

@@ -1,0 +1,30 @@
+<aside class="sidebar">
+  <nav class="nav-list">
+    <a routerLink="/teams" routerLinkActive="active-link" class="nav-link">
+      <div class="icon-wrapper">
+        <mat-icon>groups</mat-icon>
+      </div>
+      <span class="link-label">Teams</span>
+    </a>
+
+    <a routerLink="/projects" routerLinkActive="active-link" class="nav-link">
+      <div class="icon-wrapper">
+        <mat-icon>folder</mat-icon>
+      </div>
+      <span class="link-label">Projects</span>
+    </a>
+
+    <a routerLink="/tasks" routerLinkActive="active-link" class="nav-link">
+      <div class="icon-wrapper">
+        <mat-icon>task_alt</mat-icon>
+      </div>
+      <span class="link-label">Tasks</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-avatar">
+      {{ user()?.name?.substring(0,2)?.toUpperCase() || 'UA' }}
+    </div>
+  </div>
+</aside>

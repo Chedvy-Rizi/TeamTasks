@@ -1,10 +1,36 @@
-<div class="comments-container">
-    @for(comment of comments(); track comment.id) {
-        <p>{{comment.body}}</p>
-        <span>{{comment.created_at}}</span>
-        <span>{{comment.author_name}}</span>
+<div class="dialog-container">
+  <header class="dialog-header">
+    <button class="close-x" (click)="onClose()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h2>Task Comments</h2>
+  </header>
+
+  <div class="comments-list">
+    @for (comment of comments(); track comment.id) {
+      <div class="comment-card">
+        <div class="comment-meta">
+          <span class="author">{{ comment.author_name }}</span>
+          <span class="time">{{ comment.created_at | date:'h:mm a' }}</span>
+        </div>
+        <div class="comment-bubble">
+          {{ comment.body }}
+        </div>
+      </div>
     }
-    <input type="text" [(ngModel)]="newCommentBody" placeholder="Add a comment..." />
-    <button (click)="addComment()">Add Comment</button>
-    <button (click)="onCloseComments()">Close Comments</button>
+  </div>
+
+  <div class="input-section">
+    <div class="input-capsule">
+      <input 
+        type="text" 
+        [(ngModel)]="newCommentBody" 
+        placeholder="Write a comment..."
+        (keyup.enter)="addComment()">
+      
+      <button class="send-btn" (click)="addComment()" [disabled]="!newCommentBody.trim()">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>

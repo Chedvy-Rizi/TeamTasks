@@ -1,12 +1,22 @@
+<div class="teams-page-container">
+  <header class="page-header">
+    <div class="header-text">
+      <h1>Projects</h1>
+      <p>Manage your professional projects and tasks</p>
+    </div>
+    
+    <button class="btn-main-add" (click)="openAddProject()">
+      <mat-icon>add</mat-icon>
+      Add Project
+    </button>
+  </header>
 
-@for(project of projects(); track  project.id) {
-  <app-project-card [project]="project"></app-project-card>
-  <button (click)="onClickSeeTasks(project.id)">See all tasks</button>
-}
-
-@if(this.isAddingProject) {
-<app-add-project (projectAdded)="closeAddProject()"></app-add-project>
-}
-@else {
-<button (click)="addProject()">Add Project</button>
-}
+  <div class="teams-grid">
+    @for(project of projects(); track project.id) {
+      <app-project-card 
+        [project]="project" 
+        (seeTasks)="onClickSeeTasks($event)">
+      </app-project-card>
+    }
+  </div>
+</div>

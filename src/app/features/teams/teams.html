@@ -1,8 +1,21 @@
-<div>
-    @for(team of teams(); track team.id) {
-    <app-taem-card [taem]="team"></app-taem-card>
-    <app-add-member (addMemmber)="addMemmber($event, team.id)"></app-add-member>
-    }
-</div>
+<div class="teams-page-container">
+  <header class="page-header">
+    <div class="header-text">
+      <h1>My Teams</h1>
+      <p>Manage your collaboration groups and members</p>
+    </div>
+    <button class="btn-main-add" (click)="openAddTeamDialog()">
+      <mat-icon>add</mat-icon>
+      Create New Team
+    </button>
+  </header>
 
-<app-add-team (addTask)="addTeam($event)"></app-add-team>
+  <div class="teams-grid">
+    @for(team of teams(); track team.id) {
+      <app-taem-card 
+        [taem]="team" 
+        (requestAddMember)="openAddMemberDialog(team.id)">
+      </app-taem-card>
+    }
+  </div>
+</div>

@@ -1,0 +1,73 @@
+.teams-page-container {
+  padding: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.header-text h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1f2e;
+  margin: 0;
+}
+
+.header-text p {
+  color: #64748b;
+  margin: 5px 0 0;
+}
+
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.btn-main-add {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-main-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px #00C2FF; 
+}
+
+.project-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 15px;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.project-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.taskflow-btn {
+  background-color: #0F172A !important;
+  color: #ffffff !important;
+  height: 40px !important;
+  width: 100% !important;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  border: none !important;
+  cursor: pointer;
+}

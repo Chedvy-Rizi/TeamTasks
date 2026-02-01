@@ -1,4 +1,35 @@
-<div>
-    <input type="text" placeholder="Team Name" [(ngModel)]="teamName" />
-    <button (click)="onAddTeam()">Add Team</button>
+
+<div class="modal-card">
+  <header>
+    <h2>Add New Team</h2>
+  </header>
+
+  <div class="tech-form">
+    <div class="input-container">
+      <input 
+        type="text" 
+        id="teamName"
+        [(ngModel)]="teamName" 
+        placeholder=" " 
+        autocomplete="off" />
+      <label for="teamName">Team Name</label>
+      
+      @if (showError && !teamName.trim()) {
+        <span class="error-message">Please enter a team name</span>
+      }
+    </div>
+
+    <div class="footer-actions">
+      <button type="button" class="btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      
+      <button 
+        type="button" 
+        class="btn-submit" 
+        (click)="onAddTeam()">
+        Add Team
+      </button>
+    </div>
+  </div>
 </div>

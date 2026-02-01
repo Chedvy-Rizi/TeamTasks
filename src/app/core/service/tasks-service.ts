@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs';
 import { TaskRequest, TaskResponse, TaskUpdateRequest } from '../../shared/models/task-model';
+import { NotificationService } from './notification-service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,11 @@ export class TasksService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:3000/api/tasks';
 
+  private notification = inject(NotificationService);
   private _tasks = signal<TaskResponse[]>([]);
   tasks$ = this._tasks.asReadonly();
+
+
 
   getTasks() {
     return this.http.get<TaskResponse[]>(`${this.apiUrl}`).pipe(
@@ -20,25 +24,18 @@ export class TasksService {
           this._tasks.set(tasks);
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );
   }
 
-  getTaskByProjectId(id: number) {
-    return this.http.get<TaskResponse[]>(`${this.apiUrl}?projectId=${id}`).pipe(
-      tap({
-        next: (tasks) => {
-          this._tasks.set(tasks);
-        },
-        error: (err) => {
-          //create a component to show error messages
-        }
-      })
-    );
+  getFilteredTasks(projectId: number | null) {
+    const all = this._tasks();
+    if (!projectId) return all;
+    return all.filter(t => Number(t.project_id) === Number(projectId));
   }
-
+  
   addTask(req: TaskRequest) {
     return this.http.post<TaskResponse>(`${this.apiUrl}`, req).pipe(
       tap({
@@ -46,7 +43,7 @@ export class TasksService {
           this._tasks.update(tasks => [...tasks, task]);
         },
         error: (err) => {
-          //create a component to show error messages
+           this.notification.showError(err.error?.error)
         }
       })
     );
@@ -59,7 +56,7 @@ export class TasksService {
           this._tasks.update(tasks => tasks.map(task => task.id === id ? updatedTask : task));
         },
         error: (err) => {
-          //create a component to show error messages
+          this.notification.showError(err.error?.error)
         }
       })
     );
@@ -72,7 +69,7 @@ export class TasksService {
           this._tasks.update(tasks => tasks.filter(task => task.id !== id));
         },
         error: (err) => {
-          //create a component to show error messages
+           this.notification.showError(err.error?.error)
         }
       })
     );

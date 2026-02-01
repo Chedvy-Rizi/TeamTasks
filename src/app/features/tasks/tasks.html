@@ -1,21 +1,60 @@
-<div class="tasks-container">
-    <h2>Tasks List</h2>
-    @for (task of tasks(); track task.id) {
-    <app-task-card [task]="task" (deleteTask)="onDeleteTask($event)"
-        (updateTask)="onUpdateTask($event)"></app-task-card>
-    @if(!isOpenComments()){
-    <button (click)="openComments()">Show Comments</button>
-    }
-    @if(isOpenComments()){
-    <app-comments [taskId]="task.id" (closeComments)="closeComments()"></app-comments>
-    }
-    } @empty {
-    <p>All done! You don't have any tasks at the moment.</p>
-    }
-    <button (click)="addTask()">Add your first task</button>
+<div class="teams-page-container">
+  <header class="page-header">
+    <div class="header-text">
+      <h1>Tasks</h1>
+      <p>Manage and track your project workflow</p>
+    </div>
 
+    <div class="header-actions">
+      <div class="view-switcher">
+        <button [class.active]="viewMode() === 'list'" (click)="toggleView('list')">
+          <mat-icon>format_list_bulleted</mat-icon>
+          List
+        </button>
+        <button [class.active]="viewMode() === 'board'" (click)="toggleView('board')">
+          <mat-icon>grid_view</mat-icon>
+          Board
+        </button>
+      </div>
+
+      <button class="btn-main-add" (click)="triggerAddTask('todo')">
+        <mat-icon>add</mat-icon>
+        New Task
+      </button>
+    </div>
+  </header>
+
+  <div class="tasks-layout" [class.list-view]="viewMode() === 'list'" [class.board-view]="viewMode() === 'board'" 
+     cdkDropListGroup> @for (status of statuses; track status) {
+    <div class="status-column" [class]="status">
+      <div class="status-header">
+        <span class="status-dot"></span>
+        <h3 class="status-title">{{ status.replace('_', ' ').toUpperCase() }}</h3>
+      </div>
+
+      <div class="task-container" 
+           cdkDropList 
+           [cdkDropListData]="status" 
+           (cdkDropListDropped)="onDrop($event)">
+           
+        @for (task of tasks(); track task.id) {
+          @if (task.status === status) {
+            <app-task-card 
+              cdkDrag 
+              [cdkDragData]="task"
+              [task]="task" 
+              [viewMode]="viewMode()" 
+              (update)="onUpdateTask($event)"
+              (delete)="onDeleteTask($event)">
+            </app-task-card>
+          }
+        }
+        
+        <button class="add-inline-btn" (click)="triggerAddTask(status)">
+          <mat-icon>add</mat-icon> Add Task
+        </button>
+      </div>
+    </div>
+  }
 </div>
-
-@if(isAddingTask()){
-<app-add-task (taskSave)="closeAddTask()"></app-add-task>
-}
+</div>

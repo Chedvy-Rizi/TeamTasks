@@ -2,7 +2,6 @@
 
 .field-container { display: flex; flex-direction: column; }
 
-/* עיצוב שדה לא תקין */
 input.is-invalid {
   border: 2px solid #ff4d4d;
   background-color: #fff5f5;

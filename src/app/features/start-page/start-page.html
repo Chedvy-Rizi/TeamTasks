@@ -1,2 +1,32 @@
-<a routerLinkActive="active" routerLink="/login">login</a>
-<router-outlet></router-outlet>
+<div class="landing-page">
+  <nav class="nav-container">
+    <img src="logo.svg" alt="TaskFlow" class="logo">
+    <div class="spacer"></div>
+  </nav>
+
+  <main class="hero-container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="title">The platform that <br> <span class="gradient-text">works for you.</span></h1>
+        
+        <p class="description">
+          Stop juggling between tools. TaskFlow brings your tasks, docs, and goals into one unified workspace. 
+          Designed for high-performance teams.
+        </p>
+
+        <p class="sub-description">
+          Join thousands of teams who have already simplified their workflow. 
+        </p>
+        
+        <div class="btn-frame-bold">
+          <button mat-flat-button class="start-btn" routerLink="/login">
+            Get Started - It's Free
+          </button>
+        </div>
+      </div>
+      <div class="hero-spacer"></div>
+    </div>
+  </main>
+
+  <router-outlet></router-outlet>
+</div>

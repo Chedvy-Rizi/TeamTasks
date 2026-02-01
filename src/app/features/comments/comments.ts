@@ -1,33 +1,41 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommentsService } from '../../core/service/comments-service';
 import { FormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-comments',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [FormsModule, MatDialogModule, MatIconModule, MatButtonModule, CommonModule],
   templateUrl: './comments.html',
   styleUrl: './comments.css',
 })
-export class Comments {
+export class Comments implements OnInit {
   private commentsService = inject(CommentsService);
-  taskId = input.required<number>();
-  closeComments = output<void>();
+  private dialogRef = inject(MatDialogRef<Comments>);
+  data = inject(MAT_DIALOG_DATA);
+
   comments = this.commentsService.comments$;
   newCommentBody = '';
 
   ngOnInit() {
-    this.commentsService.getComments(this.taskId()).subscribe();
+    this.commentsService.getComments(this.data.taskId).subscribe();
   }
+
   addComment() {
     if (this.newCommentBody.trim()) {
       this.commentsService
-        .addComment({ taskId: this.taskId(), body: this.newCommentBody })
+        .addComment({ taskId: this.data.taskId, body: this.newCommentBody })
         .subscribe(() => {
           this.newCommentBody = '';
         });
     }
   }
-  onCloseComments() {
-    this.closeComments.emit();
+  
+  onClose() {
+    this.dialogRef.close();
   }
 }

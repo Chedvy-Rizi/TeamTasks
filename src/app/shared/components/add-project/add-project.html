@@ -1,1 +1,43 @@
-<p>add-project works!</p>
+<div class="modal-backdrop">
+    <div class="modal-card">
+        <header>
+
+            <h2>Add New Project</h2>
+        </header>
+
+        <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="tech-form">
+
+            <div class="input-container">
+                <input id="name" type="text" formControlName="name" placeholder=" " />
+                <label for="name">Project Name</label>
+                @if(projectForm.get('name')?.invalid && projectForm.get('name')?.touched) {
+                <span class="error-text">Project name is required</span>
+                }
+            </div>
+
+            <div class="input-container">
+                <select id="teamId" formControlName="teamId" [class.has-value]="projectForm.get('teamId')?.value">
+                    <option value="" disabled selected></option>
+                    @for(team of teams(); track team.id) {
+                    <option [value]="team.id">{{ team.name }}</option>
+                    }
+                </select>
+                <label for="teamId">Select Team</label>
+                @if(projectForm.get('teamId')?.invalid && projectForm.get('teamId')?.touched) {
+                <span class="error-text">Please select a team</span>
+                }
+            </div>
+
+            <div class="input-container">
+                <textarea id="description" formControlName="description" placeholder=" " rows="3"></textarea>
+                <label for="description">Description</label>
+            </div>
+
+            <div class="footer-actions">
+                <button type="button" class="btn-cancel" (click)="onCancel()">Cancel</button>
+
+                <button type="submit" class="btn-submit">Add Project</button>
+            </div>
+        </form>
+    </div>
+</div>

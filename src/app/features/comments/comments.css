@@ -1,0 +1,137 @@
+
+.dialog-container {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.dialog-header {
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.dialog-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #1a1f2e;
+}
+
+.close-x {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+}
+
+.comments-list {
+  padding: 24px;
+  max-height: 350px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.comment-meta {
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: #64748b;
+}
+
+.comment-meta .author {
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.comment-bubble {
+  background: #f8fafc;
+  color: #1e293b;
+  padding: 10px 16px;
+  border-radius: 16px 16px 4px 16px;
+  font-size: 14px;
+  max-width: 85%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.input-section {
+  padding: 20px 24px 30px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.input-capsule {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 30px; 
+  padding: 6px 6px 6px 20px;
+  transition: border-color 0.2s;
+}
+
+.input-capsule:focus-within {
+  border-color: #3291ff;
+}
+
+.input-capsule input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  padding: 8px 0;
+}
+
+.send-btn {
+  background: #3291ff;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.send-btn:hover:not(:disabled) {
+  background: #0072f5;
+  transform: scale(1.05);
+}
+
+.send-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: default;
+}
+
+.send-btn mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  margin-right: -2px; 
+}

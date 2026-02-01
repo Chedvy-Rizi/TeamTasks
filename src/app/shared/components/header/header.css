@@ -1,0 +1,102 @@
+.main-header {
+  height: 70px;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 25px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100; 
+  border-bottom: 1px solid #f1f5f9;
+  box-sizing: border-box;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo {
+  height: 32px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #0a1128;
+  letter-spacing: -0.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.status {
+  font-size: 10px;
+  color: #10b981;
+  font-weight: 600;
+}
+
+.header-avatar {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, #00f2fe 0%, #ee0979 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0, 210, 255, 0.2);
+}
+
+.vertical-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #e2e8f0;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.logout-btn:hover {
+  color: #ee0979;
+  background-color: #fff1f2;
+}

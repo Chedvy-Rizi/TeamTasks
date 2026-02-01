@@ -1,23 +1,41 @@
-import { Component, inject, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { ProjectsService } from '../../../core/service/projects-service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TeamsService } from '../../../core/service/teams-service';
 
 @Component({
-  selector: 'app-add-project',
-  imports: [],
+  selector: 'app-add-project-dialog',
+  standalone: true,
+  imports: [
+    ReactiveFormsModule, 
+    MatDialogModule, 
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule
+  ],
   templateUrl: './add-project.html',
-  styleUrl: './add-project.css',
+  styleUrl: './add-project.css'
 })
 export class AddProject {
-  private projectService = inject(ProjectsService);
-
   private fb = inject(FormBuilder);
+  private projectService = inject(ProjectsService);
+  private teamsService = inject(TeamsService);
+  private dialogRef = inject(MatDialogRef<AddProject>);
+
+  teams = this.teamsService.teams$;
   projectForm: FormGroup;
 
-  projectAdded = output<void>();
+  ngOnInit(){
+    this.teamsService.getTeams().subscribe();
+  }
 
   constructor() {
     this.projectForm = this.fb.group({
+      teamId: [null, Validators.required],
       name: ['', Validators.required],
       description: ['']
     });
@@ -25,12 +43,13 @@ export class AddProject {
 
   onSubmit() {
     if (this.projectForm.valid) {
-      const formData = this.projectForm.value;
-      this.projectService.addProject(formData).subscribe(() => {
-        this.projectAdded.emit();
+      this.projectService.addProject(this.projectForm.value).subscribe(() => {
+        this.dialogRef.close(true); 
       });
-    } else {
-      this.projectForm.markAllAsTouched();
     }
+  }
+
+  onCancel() {
+    this.dialogRef.close();
   }
 }
