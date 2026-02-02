@@ -4,19 +4,45 @@
       <h1>Projects</h1>
       <p>Manage your professional projects and tasks</p>
     </div>
-    
-    <button class="btn-main-add" (click)="openAddProject()">
-      <mat-icon>add</mat-icon>
-      Add Project
-    </button>
+
+    @if (projects()?.length) {
+      <button class="btn-main-add" (click)="openAddProject()">
+        <mat-icon>add</mat-icon>
+        Add Project
+      </button>
+    }
   </header>
 
-  <div class="teams-grid">
-    @for(project of projects(); track project.id) {
-      <app-project-card 
-        [project]="project" 
-        (seeTasks)="onClickSeeTasks($event)">
-      </app-project-card>
-    }
-  </div>
+  @if (projects()?.length) {
+    <div class="teams-grid">
+      @for(project of projects(); track project.id) {
+        <app-project-card 
+          [project]="project" 
+          (seeTasks)="onClickSeeTasks($event)">
+        </app-project-card>
+      }
+    </div>
+  } @else {
+    <div class="empty-state-card">
+      <div class="empty-icon-wrapper">
+        <mat-icon>folder_off</mat-icon>
+      </div>
+      <h2>No projects found</h2>
+      <p>It looks like you haven't started any projects yet. Start by setting up your team or create your first project below.</p>
+      
+      <div class="empty-actions">
+        <button class="btn-secondary" (click)="navigateToTeams()">
+          <mat-icon>group_add</mat-icon>
+          Go to Teams
+        </button>
+
+        @if (teams()?.length) {
+          <button class="btn-main-add" (click)="openAddProject()">
+            <mat-icon>add</mat-icon>
+            Create First Project
+          </button>
+        }
+      </div>
+    </div>
+  }
 </div>

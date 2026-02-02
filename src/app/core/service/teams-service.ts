@@ -33,6 +33,7 @@ export class TeamsService {
       tap({
         next: (team) => {
           this._teams.update(teams => [...teams, { ...team, members_count: 1 }]);
+           this.notification.showSuccess('New team successfully deployed to workspace');
         },
         error: (err) => {
           this.notification.showError(err.error?.error)
@@ -46,6 +47,7 @@ export class TeamsService {
       tap({
         next: () => {
           this._teams.update(teams => teams.map(team => team.id === teamId ? { ...team, members_count: team.members_count + 1 } : team));
+           this.notification.showSuccess('New memmber successfully deployed to your team');
         },
         error: (err) => {
           this.notification.showError(err.error?.error)

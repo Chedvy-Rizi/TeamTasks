@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenericError } from '../../shared/components/generic-error/generic-error';
+import { GenericSucces } from '../../shared/components/generic-succes/generic-succes';
 
 
 @Injectable({
@@ -24,11 +25,12 @@ export class NotificationService {
 
 
   showSuccess(message: string) {
-    this.snackBar.open(message, 'Close', {
-      duration: 3000,
+    this.snackBar.openFromComponent(GenericSucces, {
+      data: { message: message },
+      duration: 4000,
       horizontalPosition: 'end',
       verticalPosition: 'bottom',
-      panelClass: ['success-snackbar'] 
+      panelClass: ['hitech-success-snackbar'] 
     });
   }
 }

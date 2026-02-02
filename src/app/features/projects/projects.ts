@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProject } from '../../shared/components/add-project/add-project';
 import { MatIcon } from "@angular/material/icon";
+import { TeamsService } from '../../core/service/teams-service';
 
 @Component({
   selector: 'app-projects',
@@ -16,15 +17,16 @@ import { MatIcon } from "@angular/material/icon";
 export class Projects {
   private projectService = inject(ProjectsService);
   private tasksService = inject(TasksService);
+  private teamsService = inject(TeamsService);
   private router = inject(Router);
   private dialog = inject(MatDialog);
   projects = this.projectService.projects$;
+  teams = this.teamsService.teams$;
 
   ngOnInit() {
     this.projectService.getProjects().subscribe();
+    this.teamsService.getTeams().subscribe();
   }
-
-  
 
   onClickSeeTasks(id: number) {
     this.router.navigate(['/tasks', id]);
@@ -35,5 +37,9 @@ export class Projects {
       width: '450px',
       panelClass: 'tech-dialog-container' 
     });
+  }
+
+  navigateToTeams(){
+    this.router.navigate(['/teams']);
   }
 }

@@ -7,8 +7,9 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from "@angular/material/icon";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskCard } from "../../shared/components/task-card/task-card";
+import { ProjectsService } from '../../core/service/projects-service';
 
 @Component({
   selector: 'app-tasks',
@@ -20,7 +21,10 @@ import { TaskCard } from "../../shared/components/task-card/task-card";
 export class Tasks implements OnInit {
   private dialog = inject(MatDialog);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private tasksService = inject(TasksService);
+  private projectService =inject(ProjectsService);
+  projects = this.projectService.projects$;
 
   viewMode = signal<'board' | 'list'>('board');
   statuses = ['todo', 'in_progress', 'done'];
@@ -32,6 +36,7 @@ export class Tasks implements OnInit {
 
   ngOnInit() {
     this.tasksService.getTasks().subscribe();
+    this.projectService.getProjects().subscribe();
   }
 
   triggerAddTask(status: string) {
@@ -68,5 +73,9 @@ export class Tasks implements OnInit {
 
   toggleView(mode: 'board' | 'list') {
     this.viewMode.set(mode);
+  }
+
+  navigateToProjects(){
+     this.router.navigate(['/projects']);
   }
 }

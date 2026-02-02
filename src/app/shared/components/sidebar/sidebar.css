@@ -1,13 +1,12 @@
-
 .sidebar {
   width: 72px;
   height: 100vh;
   background: #0b0b0b;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   border-right: 1px solid #1e1e1e;
-   padding-right: 6px;
+  padding-right: 6px;
+  box-sizing: border-box;
 }
 
 .nav-list {
@@ -16,6 +15,7 @@
   align-items: center;
   padding-top: 24px;
   gap: 28px;
+  flex: 1;
 }
 
 .nav-link {
@@ -65,30 +65,21 @@
   display: flex;
   justify-content: center;
   border-top: 1px solid #1e1e1e;
+  margin-bottom: 65px; 
+  width: 100%;
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: #ffffff;
-  color: #000000;
+  background: #6366f1;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.avatar-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #6366f1; 
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  flex-shrink: 0; 
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+  border: 2px solid rgba(255, 255, 255, 0.1);
 }

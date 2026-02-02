@@ -23,7 +23,7 @@ export class ProjectsService {
           this.projects.set(projects);
         },
         error: (err) => {
-         this.notification.showError(err.error?.error)
+          this.notification.showError(err.error?.error)
         }
       })
     );
@@ -34,6 +34,7 @@ export class ProjectsService {
       tap({
         next: (project) => {
           this.projects.update(projects => [...projects, project]);
+          this.notification.showSuccess('New project successfully deployed to workspace');
         },
         error: (err) => {
           this.notification.showError(err.error?.error)

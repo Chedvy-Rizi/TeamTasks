@@ -51,3 +51,13 @@
 .taskflow-btn:active {
   transform: scale(0.97);
 }
+
+.cdk-overlay-container .hitech-success-snackbar {
+  background: rgba(10, 15, 25, 0.9) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  padding: 12px 16px !important;
+  overflow: hidden;
+}

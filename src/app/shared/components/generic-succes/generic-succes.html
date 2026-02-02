@@ -1,0 +1,19 @@
+<div class="hitech-toast">
+  <div class="status-indicator"></div>
+
+  <div class="icon-wrapper">
+    <mat-icon>check_circle</mat-icon>
+  </div>
+
+  <div class="content">
+    <div class="toast-header">
+      <span class="system-tag">System</span>
+      <span class="timestamp">Just now</span>
+    </div>
+    <div class="toast-message">{{ data.message }}</div>
+  </div>
+
+  <button class="close-action" (click)="snackBarRef.dismiss()" aria-label="Close notification">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

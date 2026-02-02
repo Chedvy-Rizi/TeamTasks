@@ -41,6 +41,7 @@ export class TasksService {
       tap({
         next: (task) => {
           this._tasks.update(tasks => [...tasks, task]);
+           this.notification.showSuccess('New task successfully deployed to workspace');
         },
         error: (err) => {
            this.notification.showError(err.error?.error)
@@ -54,6 +55,7 @@ export class TasksService {
       tap({
         next: (updatedTask) => {
           this._tasks.update(tasks => tasks.map(task => task.id === id ? updatedTask : task));
+           this.notification.showSuccess('System changes applied successfully');
         },
         error: (err) => {
           this.notification.showError(err.error?.error)
@@ -67,6 +69,7 @@ export class TasksService {
       tap({
         next: () => {
           this._tasks.update(tasks => tasks.filter(task => task.id !== id));
+           this.notification.showSuccess('Task successfully deleted from your workspace');
         },
         error: (err) => {
            this.notification.showError(err.error?.error)
